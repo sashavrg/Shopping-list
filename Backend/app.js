@@ -12,7 +12,10 @@ logger.info('connecting to', config.MONGODB_URI)
 mongoose
   .connect(config.MONGODB_URI)
   .then(() => {
-    logger.info('conmnected to MongoDB', error.message)
+    logger.info('connected to MongoDB')
+  })
+  .catch((error) => {
+    logger.error('error connection to MongoDB:', error.message)
   })
 
   app.use(express.static('dist'))
@@ -24,4 +27,4 @@ mongoose
   app.use(middleware.unknownEndpoint)
   app.use(middleware.errorHandler)
 
-  module.export = app
+  module.exports = app
