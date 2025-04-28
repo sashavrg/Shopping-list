@@ -1,0 +1,35 @@
+{
+  "name": "shopping-list",
+  "version": "0.0.1",
+  "description": "shopping list webapp with authentication and mongodb integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sashavrg/shopping-list.git"
+  },
+  "keywords": [
+    "CRUD",
+    "Node.js",
+    "React",
+    "Mongodb",
+    "Mongoose",
+    "DB"
+  ],
+  "author": "Sasha Vergolini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sashavrg/shopping-list/issues"
+  },
+  "homepage": "https://github.com/sashavrg/shopping-list#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "eslint": "^9.25.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.14.0",
+    "morgan": "^1.10.0"
+  }
+}
