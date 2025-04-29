@@ -2,6 +2,7 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  min-height: 100%;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -24,9 +25,14 @@ a:hover {
 
 html {
   background-color: #242424;
+  height: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
 }
 
 body {
+  height: 100%;
+  overflow: auto;
   margin: 0;
   display: flex;
   place-items: center;
@@ -78,7 +84,10 @@ span {
 }
 
 @supports (-webkit-touch-callout: none) {
-  body {
-    height: -webkit-fill-available;
+  html, body {
+    position: relative;
+    height: auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 }

@@ -21,6 +21,13 @@ function App() {
     })
   }, [])
 
+  useEffect(() => {
+    console.log('Scroll debug:');
+    console.log('Window height:', window.innerHeight);
+    console.log('Document height:', document.documentElement.scrollHeight);
+    console.log('Root container:', document.getElementById('root')?.scrollHeight);
+  }, [items]); // Re-run when items change
+  
   const toggleChecked = id => {
     const item = items.find(n => n.id === id)
     const changedItem = { ...item, checked: !item.checked }
