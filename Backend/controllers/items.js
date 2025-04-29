@@ -56,12 +56,12 @@ itemsRouter.delete('/:id', (request, response, next) => {
 //PUT
 itemsRouter.put('/:id', (request, response, next) => {
   const body = request.body
-  const note = {
+  const item = {
     content: body.content,
     checked: body.checked
   }
 
-  Note.findByIdAndUpdate(request.params.id, item, { new: true })
+  Item.findByIdAndUpdate(request.params.id, item, { new: true })
     .then(updateItem => {
       if (updateItem) {
         response.json(updateItem)
