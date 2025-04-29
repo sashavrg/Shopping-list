@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "Building frontend..."
-cd ../frontend
+cd ../Frontend
 npm install
 npm run build
 echo "Copying frontend build to backend..."
-mkdir -p ../backend/dist
-cp -r dist/* ../backend/dist/
+mkdir -p ../Backend/dist
+cp -r dist/* ../Backend/dist/
