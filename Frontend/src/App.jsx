@@ -12,11 +12,12 @@ function App() {
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
 
+
   useEffect(() => {
     itemService
     .getAll()
     .then(initialItems => {
-      setItems(initialItems)
+      setItems(initialItems.sort((a, b) => a.content.localeCompare(b.content)))
     })
   }, [])
 
@@ -27,7 +28,8 @@ function App() {
     itemService
     .update(id, changedItem)
     .then(returnedItem => {
-      setItems(items.map(item => item.id === id ? returnedItem : item))
+      setItems(items.map(item => item.id === id ? returnedItem : item)
+        .sort((a, b) => a.content.localeCompare(b.content)))
     })
     .catch(error => {
       setErrorMessage(
@@ -41,6 +43,7 @@ function App() {
 
   const addItem = (event) => {
     event.preventDefault()
+    if (!newItem.trim()) return
     const itemObject = {
       content: newItem,
       checked: false
@@ -49,9 +52,35 @@ function App() {
     itemService
     .create(itemObject)
     .then(returnedItem => {
-      setItems(items.concat(returnedItem))
+      setItems([...items, returnedItem].sort((a, b) => a.content.localeCompare(b.content)))
       setNewItem('')
     })
+  }
+
+  const updateItem = (updatedItem) => {
+    itemService
+      .update(updatedItem.id, updatedItem)
+      .then(returnedItem => {
+        setItems(items.map(item => 
+          item.id === returnedItem.id ? returnedItem : item
+        ).sort((a, b) => a.content.localeCompare(b.content)))
+      })
+      .catch(error => {
+        setErrorMessage(`Failed to update '${updatedItem.content}'`)
+        setTimeout(() => setErrorMessage(null), 5000)
+      });
+  };
+
+  const deleteItem = (id) => {
+    itemService
+      .remove(id)
+      .then(() => {
+        setItems(items.filter(item => item.id !== id))
+      })
+      .catch(error => {
+        setErrorMessage(`Failed to delete item`)
+        setTimeout(() => setErrorMessage(null), 5000)
+      })
   }
 
   const handleItemChange = event => {
@@ -69,7 +98,7 @@ function App() {
 
     return (
       <div>
-        <h1>Shopping List</h1>
+        <h1>Lista Spesa</h1>
         <Notification message={errorMessage} />
         <div>
           <button onClick={handleShowButton}>
@@ -82,7 +111,9 @@ function App() {
           key={item.id}
           item={item}
           toggleChecked={() => toggleChecked(item.id)}
-          />
+          onUpdate={updateItem}
+          onDelete={deleteItem}
+        />
           )}
         </ul>
         <form onSubmit={addItem}>
