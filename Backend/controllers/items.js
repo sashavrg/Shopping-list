@@ -2,6 +2,7 @@ const itemsRouter = require('express').Router()
 const Item = require('../models/item')
 const logger = require('../utils/logger')
 
+//GET
 itemsRouter.get('/:id', (request, response, next) => {
   Item.findById(request.params.id)
     .then(item => {
@@ -15,10 +16,13 @@ itemsRouter.get('/:id', (request, response, next) => {
 })
 
 itemsRouter.get('/', (req, res) => {
-  logger.info('🏓 Ping! Router is alive!')
-  res.send('Hello World!')
+  Item.find({})
+  .then(notes => {{
+    res.json(notes)
+  }})
 })
 
+//POST
 itemsRouter.post('/', (request, response, next) => {
   const body = request.body
 
@@ -30,7 +34,7 @@ itemsRouter.post('/', (request, response, next) => {
 
   const item = new Item({
     content: body.content,
-    important: body.important || false,
+    checked: body.checked || false,
   })
 
   item.save()
@@ -40,5 +44,32 @@ itemsRouter.post('/', (request, response, next) => {
     .catch(error => next(error))
 })
 
+//DELETE
+itemsRouter.delete('/:id', (request, response, next) => {
+  Item.findByIdAndDelete(request.params.id)
+    .then(() => {
+      response.status(204).end()
+    })
+    .catch (error => next(error))
+})
+
+//PUT
+itemsRouter.put('/:id', (request, response, next) => {
+  const body = request.body
+  const note = {
+    content: body.content,
+    checked: body.checked
+  }
+
+  Note.findByIdAndUpdate(request.params.id, item, { new: true })
+    .then(updateItem => {
+      if (updateItem) {
+        response.json(updateItem)
+      } else {
+        response.status(404).end()
+      }
+    })
+    .catch (error => next(error))
+})
 
 module.exports = itemsRouter

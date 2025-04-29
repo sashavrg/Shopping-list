@@ -6,7 +6,7 @@ const itemSchema = new mongoose.Schema({
     required: true,
     minlength: 3
   },
-  important: Boolean,
+  checked: Boolean,
 })
 
 itemSchema.set('toJSON', {
