@@ -23,12 +23,6 @@ function App() {
     })
   }, [])
 
-  useEffect(() => {
-    console.log('Scroll debug:');
-    console.log('Window height:', window.innerHeight);
-    console.log('Document height:', document.documentElement.scrollHeight);
-    console.log('Root container:', document.getElementById('root')?.scrollHeight);
-  }, [items]); // Re-run when items change
   
   const toggleChecked = id => {
     const item = items.find(n => n.id === id)
@@ -104,9 +98,9 @@ function App() {
     setSearchInput(event.target.value)
   }
 
-  const itemsToShow = showAll
-    ? items
-    : items.filter(item => !item.checked)
+  const itemsToShow = items.filter(item => item.content.toLowerCase().includes(searchInput
+    .toLowerCase())
+)
 
 
     return (
