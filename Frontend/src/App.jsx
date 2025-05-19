@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Item from './components/Item'
 import Notification from './components/Notification'
+import SearchFilter from './components/SearchFilter'
 import itemService from './services/items'
 import './App.css'
 
@@ -9,6 +10,7 @@ import './App.css'
 function App() {
   const [items, setItems] = useState([])
   const [newItem, setNewItem] = useState('')
+  const [searchInput, setSearchInput] = useState('')
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
 
@@ -98,6 +100,10 @@ function App() {
     setShowAll(!showAll)
   }
 
+  const handleSearchChange = event => {
+    setSearchInput(event.target.value)
+  }
+
   const itemsToShow = showAll
     ? items
     : items.filter(item => !item.checked)
@@ -107,6 +113,10 @@ function App() {
       <div>
         <h1>Lista Spesa</h1>
         <Notification message={errorMessage} />
+        <SearchFilter
+          searchInput={searchInput}
+          handleSearchChange={handleSearchChange}
+        />
         <div>
           <button onClick={handleShowButton}>
             show {showAll ? `missing` : ` all`}
