@@ -98,8 +98,10 @@ function App() {
     setSearchInput(event.target.value)
   }
 
-  const itemsToShow = items.filter(item => item.content.toLowerCase().includes(searchInput
-    .toLowerCase())
+  const itemsToShow = items
+    .filter(item => showAll || !item.checked)
+    .filter(item =>
+      item.content.toLowerCase().includes(searchInput.toLowerCase())
 )
 
 
