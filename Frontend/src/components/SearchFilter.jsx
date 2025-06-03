@@ -1,6 +1,8 @@
+import './SearchFilter.css'
+
 const InputField = ({ searchInput, handleSearchChange}) => {
   return (
-  <form>
+  <form className="input-form">
         <div>
         <input
           value={searchInput}
