@@ -1,6 +1,6 @@
 .item-text {
     display: flex;
-    align-items: left;
+    align-items: center;
     padding: 8px 0;
     color: #f9f9f9;
     transition: background-color 0.2s ease;
@@ -14,6 +14,8 @@
   }
 
 .checkbox {
+    display: flex;
+    align-items: flex-start;
     -webkit-appearance: none;
     appearance: none;
     width: 22px;
@@ -24,6 +26,7 @@
     cursor: pointer;
     position: relative;
     transition: all 0.2s ease;
+    margin-top: 9px;
     margin-right: 12px;
     flex-shrink: 0;
 }
