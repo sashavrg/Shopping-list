@@ -129,13 +129,15 @@ function App() {
         />
           )}
         </ul>
-        <form onSubmit={addItem}>
+        <form onSubmit={addItem} className='submit-input-form'>
           <input
           value={newItem}
           onChange={handleItemChange}
           />
-          <button type="submit">save</button>
         </form>
+        <div>
+          <button type="submit">save</button>
+        </div>
       </div>
     )
   }

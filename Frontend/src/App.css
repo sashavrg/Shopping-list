@@ -11,3 +11,7 @@ ul {
   text-align: left;
   padding-inline-start: 0;
 }
+
+.submit-input-form {
+  padding: 8px 0;
+}
