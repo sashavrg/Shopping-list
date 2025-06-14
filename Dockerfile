@@ -35,6 +35,6 @@ WORKDIR /app/Backend
 
 COPY --from=backend-build /app/Backend ./
 
-EXPOSE 3036
+EXPOSE 3000
 
 CMD ["node", "index.js"]
