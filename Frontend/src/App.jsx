@@ -107,7 +107,7 @@ function App() {
 
     return (
       <div>
-        <h1>Lista Spesa</h1>
+        <h1>Shopping List</h1>
         <Notification message={errorMessage} />
         <SearchFilter
           searchInput={searchInput}
