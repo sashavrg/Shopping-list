@@ -1,5 +1,3 @@
-import './SearchFilter.css'
-
 const InputField = ({ searchInput, handleSearchChange}) => {
   return (
   <form className="input-form">

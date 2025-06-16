@@ -118,7 +118,7 @@ function App() {
             show {showAll ? `missing` : ` all`}
           </button>
         </div>
-        <ul>
+        <ul className='glassy'>
           {itemsToShow.map(item =>
           <Item
           key={item.id}
@@ -129,7 +129,7 @@ function App() {
         />
           )}
         </ul>
-        <form onSubmit={addItem} className='submit-input-form'>
+        <form onSubmit={addItem} className='input-form'>
           <input
           value={newItem}
           onChange={handleItemChange}
