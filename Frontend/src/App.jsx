@@ -136,7 +136,7 @@ function App() {
           />
         </form>
         <div>
-          <button type="submit">save</button>
+          <button onClick={addItem} type="submit">save</button>
         </div>
       </div>
     )
