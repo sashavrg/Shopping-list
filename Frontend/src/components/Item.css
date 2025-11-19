@@ -81,3 +81,74 @@ span {
     text-decoration: line-through;
     color: #888;
   }
+
+  .item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .item-tags {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag-badges {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  .tag-badge {
+    padding: 0.15rem 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .tag-select-button {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+
+  .tag-select-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .tag-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    margin-top: 0.5rem;
+  }
+
+  .tag-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+
+  .tag-checkbox-label:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .tag-checkbox-label input[type="checkbox"] {
+    cursor: pointer;
+  }

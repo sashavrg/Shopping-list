@@ -1,0 +1,1 @@
+/home/user/Shopping-list/backend-rust/target/release/shopping_list_backend: /home/user/Shopping-list/backend-rust/migrations/001_init.sql /home/user/Shopping-list/backend-rust/src/db.rs /home/user/Shopping-list/backend-rust/src/handlers.rs /home/user/Shopping-list/backend-rust/src/main.rs /home/user/Shopping-list/backend-rust/src/models.rs

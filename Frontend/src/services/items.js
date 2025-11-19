@@ -1,8 +1,8 @@
 import axios from 'axios'
 const baseUrl = '/api/items'
 
-const getAll = () => {
-  const request = axios.get(baseUrl)
+const getAll = (url = baseUrl) => {
+  const request = axios.get(url)
   return request.then(response => response.data)
 }
 
