@@ -7,6 +7,11 @@ const itemSchema = new mongoose.Schema({
     minlength: 3
   },
   checked: Boolean,
+  list: {
+    type: String,
+    default: 'shopping',
+    enum: ['shopping', 'home-needs']
+  }
 })
 
 itemSchema.set('toJSON', {

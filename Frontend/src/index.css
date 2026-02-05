@@ -52,6 +52,20 @@ h1 {
   color: #ffd52e;
 }
 
+.title-toggle {
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+  user-select: none;
+}
+
+.title-toggle.title-fade {
+  opacity: 0;
+}
+
+.title-toggle:hover:not(.title-fade) {
+  opacity: 0.8;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -97,4 +111,3 @@ span {
     -webkit-overflow-scrolling: touch !important;
   }
 }
-

@@ -15,11 +15,13 @@ itemsRouter.get('/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
-itemsRouter.get('/', (req, res) => {
-  Item.find({})
-  .then(notes => {{
-    res.json(notes)
-  }})
+itemsRouter.get('/', (req, res, next) => {
+  const list = req.query.list || 'shopping'
+  Item.find({ list })
+    .then(items => {
+      res.json(items)
+    })
+    .catch(error => next(error))
 })
 
 //POST
@@ -35,6 +37,7 @@ itemsRouter.post('/', (request, response, next) => {
   const item = new Item({
     content: body.content,
     checked: body.checked || false,
+    list: body.list || 'shopping'
   })
 
   item.save()

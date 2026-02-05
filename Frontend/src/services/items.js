@@ -1,13 +1,13 @@
 import axios from 'axios'
 const baseUrl = '/api/items'
 
-const getAll = () => {
-  const request = axios.get(baseUrl)
+const getAll = (list = 'shopping') => {
+  const request = axios.get(baseUrl, { params: { list } })
   return request.then(response => response.data)
 }
 
-const create = newObject => {
-  const request = axios.post(baseUrl, newObject)
+const create = (newObject, list = 'shopping') => {
+  const request = axios.post(baseUrl, { ...newObject, list })
   return request.then(response => response.data)
 }
 

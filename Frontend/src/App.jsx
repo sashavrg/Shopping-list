@@ -13,15 +13,17 @@ function App() {
   const [searchInput, setSearchInput] = useState('')
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
+  const [currentList, setCurrentList] = useState('shopping')
+  const [isTitleFading, setIsTitleFading] = useState(false)
 
 
   useEffect(() => {
     itemService
-    .getAll()
+    .getAll(currentList)
     .then(initialItems => {
       setItems(initialItems.sort((a, b) => a.content.localeCompare(b.content)))
     })
-  }, [])
+  }, [currentList])
 
   
   const toggleChecked = id => {
@@ -53,7 +55,7 @@ function App() {
     }
 
     itemService
-    .create(itemObject)
+    .create(itemObject, currentList)
     .then(returnedItem => {
       setItems([...items, returnedItem].sort((a, b) => a.content.localeCompare(b.content)))
       setNewItem('')
@@ -98,6 +100,22 @@ function App() {
     setSearchInput(event.target.value)
   }
 
+  const handleTitleClick = () => {
+    if (isTitleFading) return
+    setIsTitleFading(true)
+    const fadeDurationMs = 200
+    setTimeout(() => {
+      setCurrentList(currentList === 'shopping' ? 'home-needs' : 'shopping')
+      setTimeout(() => {
+        setIsTitleFading(false)
+      }, 50)
+    }, fadeDurationMs)
+  }
+
+  const getListTitle = () => {
+    return currentList === 'shopping' ? 'Shopping List' : 'Home Needs'
+  }
+
   const itemsToShow = items
     .filter(item => showAll || !item.checked)
     .filter(item =>
@@ -107,7 +125,12 @@ function App() {
 
     return (
       <div>
-        <h1>Shopping List</h1>
+         <h1
+           className={`title-toggle${isTitleFading ? ' title-fade' : ''}`}
+           onClick={handleTitleClick}
+         >
+           {getListTitle()}
+         </h1>
         <Notification message={errorMessage} />
         <SearchFilter
           searchInput={searchInput}
